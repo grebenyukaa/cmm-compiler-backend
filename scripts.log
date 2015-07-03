@@ -1,0 +1,1 @@
+ghc -dynamic -Llib lib/cbits.so Main.hs -o Main
