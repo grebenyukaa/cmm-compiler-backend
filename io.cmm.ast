@@ -1,0 +1,101 @@
+[
+    {
+        "tag": "Funcdecl",
+        "contents": [
+            {
+                "tag": "Number",
+                "contents": []
+            },
+            "main",
+            [],
+            {
+                "tag": "Complex",
+                "contents": [
+                    [
+                        [
+                            "i",
+                            {
+                                "tag": "Number",
+                                "contents": []
+                            }
+                        ]
+                    ],
+                    [
+                        {
+                            "tag": "While",
+                            "contents": [
+                                {
+                                    "tag": "Call",
+                                    "contents": [
+                                        "!=",
+                                        [
+                                            {
+                                                "tag": "Takeval",
+                                                "contents": {
+                                                    "tag": "Takeadr",
+                                                    "contents": "i"
+                                                }
+                                            },
+                                            {
+                                                "tag": "ConstInt",
+                                                "contents": 48
+                                            }
+                                        ]
+                                    ]
+                                },
+                                {
+                                    "tag": "Complex",
+                                    "contents": [
+                                        [],
+                                        [
+                                            {
+                                                "tag": "Expsta",
+                                                "contents": {
+                                                    "tag": "Call",
+                                                    "contents": [
+                                                        "<<",
+                                                        [
+                                                            {
+                                                                "tag": "Takeadr",
+                                                                "contents": "i"
+                                                            }
+                                                        ]
+                                                    ]
+                                                }
+                                            },
+                                            {
+                                                "tag": "Expsta",
+                                                "contents": {
+                                                    "tag": "Call",
+                                                    "contents": [
+                                                        ">>",
+                                                        [
+                                                            {
+                                                                "tag": "Takeval",
+                                                                "contents": {
+                                                                    "tag": "Takeadr",
+                                                                    "contents": "i"
+                                                                }
+                                                            }
+                                                        ]
+                                                    ]
+                                                }
+                                            }
+                                        ]
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "tag": "Return",
+                            "contents": {
+                                "tag": "ConstInt",
+                                "contents": 0
+                            }
+                        }
+                    ]
+                ]
+            }
+        ]
+    }
+]

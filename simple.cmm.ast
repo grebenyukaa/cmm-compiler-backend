@@ -1,0 +1,402 @@
+[
+    {
+        "tag": "VD",
+        "contents": [
+            "gvar",
+            {
+                "tag": "Number",
+                "contents": []
+            }
+        ]
+    },
+    {
+        "tag": "VD",
+        "contents": [
+            "garr",
+            {
+                "tag": "Reference",
+                "contents": 10
+            }
+        ]
+    },
+    {
+        "tag": "Funcdecl",
+        "contents": [
+            {
+                "tag": "Void",
+                "contents": []
+            },
+            "print",
+            [
+                [
+                    "sym",
+                    {
+                        "tag": "Number",
+                        "contents": []
+                    }
+                ]
+            ],
+            {
+                "tag": "Complex",
+                "contents": [
+                    [],
+                    [
+                        {
+                            "tag": "Expsta",
+                            "contents": {
+                                "tag": "Call",
+                                "contents": [
+                                    ">>",
+                                    [
+                                        {
+                                            "tag": "Takeval",
+                                            "contents": {
+                                                "tag": "Takeadr",
+                                                "contents": "sym"
+                                            }
+                                        }
+                                    ]
+                                ]
+                            }
+                        },
+                        {
+                            "tag": "Return",
+                            "contents": null
+                        }
+                    ]
+                ]
+            }
+        ]
+    },
+    {
+        "tag": "Funcdecl",
+        "contents": [
+            {
+                "tag": "Number",
+                "contents": []
+            },
+            "main",
+            [],
+            {
+                "tag": "Complex",
+                "contents": [
+                    [
+                        [
+                            "lvar",
+                            {
+                                "tag": "Number",
+                                "contents": []
+                            }
+                        ],
+                        [
+                            "larr",
+                            {
+                                "tag": "Reference",
+                                "contents": 100
+                            }
+                        ],
+                        [
+                            "j",
+                            {
+                                "tag": "Number",
+                                "contents": []
+                            }
+                        ],
+                        [
+                            "k",
+                            {
+                                "tag": "Number",
+                                "contents": []
+                            }
+                        ],
+                        [
+                            "m",
+                            {
+                                "tag": "Number",
+                                "contents": []
+                            }
+                        ]
+                    ],
+                    [
+                        {
+                            "tag": "Expsta",
+                            "contents": {
+                                "tag": "Assign",
+                                "contents": [
+                                    [
+                                        {
+                                            "tag": "Takeadr",
+                                            "contents": "j"
+                                        }
+                                    ],
+                                    {
+                                        "tag": "ConstInt",
+                                        "contents": 90
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "tag": "Expsta",
+                            "contents": {
+                                "tag": "Assign",
+                                "contents": [
+                                    [
+                                        {
+                                            "tag": "Takeadr",
+                                            "contents": "gvar"
+                                        }
+                                    ],
+                                    {
+                                        "tag": "ConstInt",
+                                        "contents": 65
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "tag": "While",
+                            "contents": [
+                                {
+                                    "tag": "Call",
+                                    "contents": [
+                                        "<=",
+                                        [
+                                            {
+                                                "tag": "Takeval",
+                                                "contents": {
+                                                    "tag": "Takeadr",
+                                                    "contents": "gvar"
+                                                }
+                                            },
+                                            {
+                                                "tag": "ConstInt",
+                                                "contents": 90
+                                            }
+                                        ]
+                                    ]
+                                },
+                                {
+                                    "tag": "Complex",
+                                    "contents": [
+                                        [],
+                                        [
+                                            {
+                                                "tag": "Expsta",
+                                                "contents": {
+                                                    "tag": "Assign",
+                                                    "contents": [
+                                                        [
+                                                            {
+                                                                "tag": "Takeadr",
+                                                                "contents": "m"
+                                                            },
+                                                            {
+                                                                "tag": "Takeadr",
+                                                                "contents": "k"
+                                                            },
+                                                            {
+                                                                "tag": "Takeadr",
+                                                                "contents": "gvar"
+                                                            }
+                                                        ],
+                                                        {
+                                                            "tag": "Call",
+                                                            "contents": [
+                                                                "+",
+                                                                [
+                                                                    {
+                                                                        "tag": "Takeval",
+                                                                        "contents": {
+                                                                            "tag": "Takeadr",
+                                                                            "contents": "gvar"
+                                                                        }
+                                                                    },
+                                                                    {
+                                                                        "tag": "ConstInt",
+                                                                        "contents": 1
+                                                                    }
+                                                                ]
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            },
+                                            {
+                                                "tag": "Expsta",
+                                                "contents": {
+                                                    "tag": "Call",
+                                                    "contents": [
+                                                        "print",
+                                                        [
+                                                            {
+                                                                "tag": "Takeval",
+                                                                "contents": {
+                                                                    "tag": "Takeadr",
+                                                                    "contents": "m"
+                                                                }
+                                                            }
+                                                        ]
+                                                    ]
+                                                }
+                                            },
+                                            {
+                                                "tag": "Ite",
+                                                "contents": [
+                                                    {
+                                                        "tag": "Call",
+                                                        "contents": [
+                                                            "==",
+                                                            [
+                                                                {
+                                                                    "tag": "Takeval",
+                                                                    "contents": {
+                                                                        "tag": "Takeadr",
+                                                                        "contents": "gvar"
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "tag": "ConstInt",
+                                                                    "contents": 89
+                                                                }
+                                                            ]
+                                                        ]
+                                                    },
+                                                    {
+                                                        "tag": "Complex",
+                                                        "contents": [
+                                                            [],
+                                                            [
+                                                                {
+                                                                    "tag": "Expsta",
+                                                                    "contents": {
+                                                                        "tag": "Call",
+                                                                        "contents": [
+                                                                            "print",
+                                                                            [
+                                                                                {
+                                                                                    "tag": "ConstInt",
+                                                                                    "contents": 10
+                                                                                }
+                                                                            ]
+                                                                        ]
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "tag": "Expsta",
+                                                                    "contents": {
+                                                                        "tag": "Assign",
+                                                                        "contents": [
+                                                                            [
+                                                                                {
+                                                                                    "tag": "Takeadr",
+                                                                                    "contents": "j"
+                                                                                }
+                                                                            ],
+                                                                            {
+                                                                                "tag": "ConstInt",
+                                                                                "contents": 10
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                }
+                                                            ]
+                                                        ]
+                                                    },
+                                                    {
+                                                        "tag": "Complex",
+                                                        "contents": [
+                                                            [],
+                                                            [
+                                                                {
+                                                                    "tag": "Expsta",
+                                                                    "contents": {
+                                                                        "tag": "Assign",
+                                                                        "contents": [
+                                                                            [
+                                                                                {
+                                                                                    "tag": "Takeadr",
+                                                                                    "contents": "j"
+                                                                                }
+                                                                            ],
+                                                                            {
+                                                                                "tag": "ConstInt",
+                                                                                "contents": 5
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                }
+                                                            ]
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "tag": "Expsta",
+                                                "contents": {
+                                                    "tag": "Assign",
+                                                    "contents": [
+                                                        [
+                                                            {
+                                                                "tag": "Takeadr",
+                                                                "contents": "j"
+                                                            }
+                                                        ],
+                                                        {
+                                                            "tag": "Call",
+                                                            "contents": [
+                                                                "-",
+                                                                [
+                                                                    {
+                                                                        "tag": "Takeval",
+                                                                        "contents": {
+                                                                            "tag": "Takeadr",
+                                                                            "contents": "j"
+                                                                        }
+                                                                    },
+                                                                    {
+                                                                        "tag": "ConstInt",
+                                                                        "contents": 1
+                                                                    }
+                                                                ]
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        ]
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "tag": "Expsta",
+                            "contents": {
+                                "tag": "Call",
+                                "contents": [
+                                    "print",
+                                    [
+                                        {
+                                            "tag": "ConstInt",
+                                            "contents": 10
+                                        }
+                                    ]
+                                ]
+                            }
+                        },
+                        {
+                            "tag": "Return",
+                            "contents": {
+                                "tag": "Takeval",
+                                "contents": {
+                                    "tag": "Takeadr",
+                                    "contents": "j"
+                                }
+                            }
+                        }
+                    ]
+                ]
+            }
+        ]
+    }
+]

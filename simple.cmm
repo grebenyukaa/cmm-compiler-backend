@@ -1,0 +1,39 @@
+int gvar;
+int garr[10];
+
+void print(int sym)
+{
+    write sym;
+    return;
+}
+
+int main(void)
+{    
+    int lvar;
+    int larr[100];
+    int j;
+    int k;
+    int m;
+
+    //larr[1] = 8;
+
+    j = 'Z';
+    gvar = 'A';
+    while (gvar <= 90)
+    {
+        m = k = gvar = gvar + 1;
+        print(m);
+        if (gvar == 'Y')
+        {
+            print('\n');
+            j=10;
+        }
+        else
+        {
+            j=5;
+        }
+        j = j - 1;
+    }
+    print('\n');
+    return j;
+}

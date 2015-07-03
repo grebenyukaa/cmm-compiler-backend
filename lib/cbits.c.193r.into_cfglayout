@@ -1,0 +1,109 @@
+
+;; Function putChar (putChar, funcdef_no=0, decl_uid=2284, cgraph_uid=0, symbol_order=0)
+
+
+
+try_optimize_cfg iteration 1
+
+;; basic block 2, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 0, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       ENTRY (FALLTHRU)
+(note 4 0 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 4 3 2 (set (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -4 [0xfffffffffffffffc])) [0 X+0 S4 A32])
+        (reg:SI 5 di [ X ])) cbits.c:9 90 {*movsi_internal}
+     (nil))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (reg:SI 92)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -4 [0xfffffffffffffffc])) [0 X+0 S4 A32])) cbits.c:10 90 {*movsi_internal}
+     (nil))
+(insn 7 6 8 2 (set (reg:QI 87 [ D.2300 ])
+        (subreg:QI (reg:SI 92) 0)) cbits.c:10 93 {*movqi_internal}
+     (nil))
+(insn 8 7 9 2 (set (reg:SI 88 [ D.2301 ])
+        (sign_extend:SI (reg:QI 87 [ D.2300 ]))) cbits.c:10 148 {extendqisi2}
+     (nil))
+(insn 9 8 10 2 (set (reg:SI 5 di)
+        (reg:SI 88 [ D.2301 ])) cbits.c:10 90 {*movsi_internal}
+     (nil))
+(call_insn 10 9 11 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("putchar") [flags 0x41]  <function_decl 0x7fc8401590d8 putchar>) [0 __builtin_putchar S1 A8])
+            (const_int 0 [0]))) cbits.c:10 670 {*call_value}
+     (nil)
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(insn 11 10 12 2 (set (reg/f:DI 93)
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("stdout") [flags 0x40]  <var_decl 0x7fc8402055a0 stdout>)
+                    ] UNSPEC_GOTPCREL)) [0  S8 A8])) cbits.c:11 89 {*movdi_internal}
+     (nil))
+(insn 12 11 13 2 (set (reg/f:DI 89 [ D.2302 ])
+        (mem/f/c:DI (reg/f:DI 93) [0 stdout+0 S8 A64])) cbits.c:11 89 {*movdi_internal}
+     (nil))
+(insn 13 12 14 2 (set (reg:DI 5 di)
+        (reg/f:DI 89 [ D.2302 ])) cbits.c:11 89 {*movdi_internal}
+     (nil))
+(call_insn 14 13 15 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fflush") [flags 0x41]  <function_decl 0x7fc84022e870 fflush>) [0 fflush S1 A8])
+            (const_int 0 [0]))) cbits.c:11 670 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 15 14 18 2 (set (reg:SI 90 [ D.2301 ])
+        (const_int 0 [0])) cbits.c:12 90 {*movsi_internal}
+     (nil))
+(insn 18 15 22 2 (set (reg:SI 91 [ <retval> ])
+        (reg:SI 90 [ D.2301 ])) cbits.c:12 90 {*movsi_internal}
+     (nil))
+(insn 22 18 23 2 (set (reg/i:SI 0 ax)
+        (reg:SI 91 [ <retval> ])) cbits.c:13 90 {*movsi_internal}
+     (nil))
+(insn 23 22 0 2 (use (reg/i:SI 0 ax)) cbits.c:13 -1
+     (nil))
+;;  succ:       EXIT [100.0%]  (FALLTHRU)
+
+
+;; Function getChar (getChar, funcdef_no=1, decl_uid=2287, cgraph_uid=1, symbol_order=1)
+
+
+
+try_optimize_cfg iteration 1
+
+;; basic block 2, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 0, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       ENTRY (FALLTHRU)
+(note 4 0 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 4 3 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -8 [0xfffffffffffffff8])) [0 X+0 S8 A64])
+        (reg:DI 5 di [ X ])) cbits.c:16 89 {*movdi_internal}
+     (nil))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(call_insn 6 3 7 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("getchar") [flags 0x41]  <function_decl 0x7fc840235510 getchar>) [0 getchar S1 A8])
+            (const_int 0 [0]))) cbits.c:17 670 {*call_value}
+     (nil)
+    (nil))
+(insn 7 6 8 2 (set (reg:SI 87 [ D.2303 ])
+        (reg:SI 0 ax)) cbits.c:17 90 {*movsi_internal}
+     (nil))
+(insn 8 7 9 2 (set (reg/f:DI 90)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -8 [0xfffffffffffffff8])) [0 X+0 S8 A64])) cbits.c:17 89 {*movdi_internal}
+     (nil))
+(insn 9 8 10 2 (set (mem:SI (reg/f:DI 90) [0 *X_4(D)+0 S4 A32])
+        (reg:SI 87 [ D.2303 ])) cbits.c:17 90 {*movsi_internal}
+     (nil))
+(insn 10 9 13 2 (set (reg:SI 88 [ D.2303 ])
+        (const_int 0 [0])) cbits.c:18 90 {*movsi_internal}
+     (nil))
+(insn 13 10 17 2 (set (reg:SI 89 [ <retval> ])
+        (reg:SI 88 [ D.2303 ])) cbits.c:18 90 {*movsi_internal}
+     (nil))
+(insn 17 13 18 2 (set (reg/i:SI 0 ax)
+        (reg:SI 89 [ <retval> ])) cbits.c:19 90 {*movsi_internal}
+     (nil))
+(insn 18 17 0 2 (use (reg/i:SI 0 ax)) cbits.c:19 -1
+     (nil))
+;;  succ:       EXIT [100.0%]  (FALLTHRU)
+

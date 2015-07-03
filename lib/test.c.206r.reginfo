@@ -1,0 +1,30 @@
+
+;; Function main (main, funcdef_no=0, decl_uid=1833, cgraph_uid=0, symbol_order=0)
+
+;; basic block 2, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 0, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       ENTRY (FALLTHRU)
+(note 3 0 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 3 5 2 NOTE_INSN_FUNCTION_BEG)
+(insn 5 2 6 2 (set (reg:SI 5 di)
+        (const_int 60 [0x3c])) test.c:6 90 {*movsi_internal}
+     (nil))
+(call_insn 6 5 7 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("putChar") [flags 0x41]  <function_decl 0x7f8f5472d1b0 putChar>) [0 putChar S1 A8])
+            (const_int 0 [0]))) test.c:6 670 {*call_value}
+     (nil)
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(insn 7 6 10 2 (set (reg:SI 87 [ D.1839 ])
+        (const_int 0 [0])) test.c:7 90 {*movsi_internal}
+     (nil))
+(insn 10 7 14 2 (set (reg:SI 88 [ <retval> ])
+        (reg:SI 87 [ D.1839 ])) 90 {*movsi_internal}
+     (nil))
+(insn 14 10 15 2 (set (reg/i:SI 0 ax)
+        (reg:SI 88 [ <retval> ])) test.c:8 90 {*movsi_internal}
+     (nil))
+(insn 15 14 0 2 (use (reg/i:SI 0 ax)) test.c:8 -1
+     (nil))
+;;  succ:       EXIT [100.0%]  (FALLTHRU)
+

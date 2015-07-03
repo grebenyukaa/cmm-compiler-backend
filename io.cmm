@@ -1,0 +1,10 @@
+int main(void)
+{
+    int i;
+    while (i != '0')
+    {
+        read i;
+        write i;
+    }
+    return 0;
+}

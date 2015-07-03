@@ -1,0 +1,49 @@
+
+;; Function main (main, funcdef_no=0, decl_uid=1833, cgraph_uid=0, symbol_order=0)
+
+starting the processing of deferred insns
+ending the processing of deferred insns
+
+
+main
+
+Dataflow summary:
+;;  invalidated by call 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 19 [fpcr] 21 [xmm0] 22 [xmm1] 23 [xmm2] 24 [xmm3] 25 [xmm4] 26 [xmm5] 27 [xmm6] 28 [xmm7] 29 [mm0] 30 [mm1] 31 [mm2] 32 [mm3] 33 [mm4] 34 [mm5] 35 [mm6] 36 [mm7] 37 [r8] 38 [r9] 39 [r10] 40 [r11] 45 [xmm8] 46 [xmm9] 47 [xmm10] 48 [xmm11] 49 [xmm12] 50 [xmm13] 51 [xmm14] 52 [xmm15] 53 [] 54 [] 55 [] 56 [] 57 [] 58 [] 59 [] 60 [] 61 [] 62 [] 63 [] 64 [] 65 [] 66 [] 67 [] 68 [] 69 [] 70 [] 71 [] 72 [] 73 [] 74 [] 75 [] 76 [] 77 [] 78 [] 79 [] 80 []
+;;  hardware regs used 	
+;;  regular block artificial uses 	 6 [bp] 7 [sp] 16 [argp] 20 [frame]
+;;  eh block artificial uses 	 6 [bp] 7 [sp] 16 [argp] 20 [frame]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 6 [bp] 7 [sp] 16 [argp] 20 [frame] 21 [xmm0] 22 [xmm1] 23 [xmm2] 24 [xmm3] 25 [xmm4] 26 [xmm5] 27 [xmm6] 28 [xmm7] 37 [r8] 38 [r9]
+;;  exit block uses 	 0 [ax] 6 [bp] 7 [sp] 20 [frame]
+;;  regs ever live 	 0[ax] 5[di] 7[sp]
+;;  ref usage 	r0={3d,2u} r1={2d} r2={2d} r4={2d} r5={3d,1u} r6={1d,2u} r7={1d,3u} r8={1d} r9={1d} r10={1d} r11={1d} r12={1d} r13={1d} r14={1d} r15={1d} r16={1d,1u} r17={1d} r18={1d} r19={1d} r20={1d,2u} r21={2d} r22={2d} r23={2d} r24={2d} r25={2d} r26={2d} r27={2d} r28={2d} r29={1d} r30={1d} r31={1d} r32={1d} r33={1d} r34={1d} r35={1d} r36={1d} r37={2d} r38={2d} r39={1d} r40={1d} r45={1d} r46={1d} r47={1d} r48={1d} r49={1d} r50={1d} r51={1d} r52={1d} r53={1d} r54={1d} r55={1d} r56={1d} r57={1d} r58={1d} r59={1d} r60={1d} r61={1d} r62={1d} r63={1d} r64={1d} r65={1d} r66={1d} r67={1d} r68={1d} r69={1d} r70={1d} r71={1d} r72={1d} r73={1d} r74={1d} r75={1d} r76={1d} r77={1d} r78={1d} r79={1d} r80={1d} r87={1d,1u} r88={1d,1u} 
+;;    total ref usage 108{95d,13u,0e} in 6{5 regular + 1 call} insns.
+(note 1 0 3 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 0, next block 1, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       ENTRY (FALLTHRU)
+;; bb 2 artificial_defs: { }
+;; bb 2 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(note 3 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 3 5 2 NOTE_INSN_FUNCTION_BEG)
+(insn 5 2 6 2 (set (reg:SI 5 di)
+        (const_int 60 [0x3c])) test.c:6 90 {*movsi_internal}
+     (nil))
+(call_insn 6 5 7 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("putChar") [flags 0x41]  <function_decl 0x7f8f5472d1b0 putChar>) [0 putChar S1 A8])
+            (const_int 0 [0]))) test.c:6 670 {*call_value}
+     (nil)
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(insn 7 6 10 2 (set (reg:SI 87 [ D.1839 ])
+        (const_int 0 [0])) test.c:7 90 {*movsi_internal}
+     (nil))
+(insn 10 7 14 2 (set (reg:SI 88 [ <retval> ])
+        (reg:SI 87 [ D.1839 ])) 90 {*movsi_internal}
+     (nil))
+(insn 14 10 15 2 (set (reg/i:SI 0 ax)
+        (reg:SI 88 [ <retval> ])) test.c:8 90 {*movsi_internal}
+     (nil))
+(insn 15 14 0 2 (use (reg/i:SI 0 ax)) test.c:8 -1
+     (nil))
+;;  succ:       EXIT [100.0%]  (FALLTHRU)
+

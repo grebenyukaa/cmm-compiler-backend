@@ -1,0 +1,465 @@
+% !TeX document-id = {fb8a2ef5-cdaf-49da-b79d-0a8152e677cd}
+% !TeX TS-program = XeLaTeX
+\documentclass[a4paper,12pt]{report}
+\raggedbottom
+% polyglossia should go first!
+\usepackage{polyglossia} % multi-language support
+
+\setdefaultlanguage{russian}
+\setmainfont{CMU Serif}
+\setsansfont{CMU Sans Serif}
+\setmonofont{CMU Typewriter Text}
+
+
+\setmainlanguage{russian}
+\setotherlanguage{english}
+
+\DeclareSymbolFont{letters}{\encodingdefault}{\rmdefault}{m}{it}
+\usepackage{amsmath} % math symbols, new environments and stuff
+\usepackage{unicode-math} % for changing math font and unicode symbols
+\setmathfont{XITS Math}
+\allowdisplaybreaks[2]
+
+\usepackage[style=english]{csquotes} % fancy quoting
+\usepackage{microtype} % for better font rendering
+\usepackage[backend=bibtex, sorting=none]{biblatex} % for bibliography, TODO: replace with biber
+\usepackage{hyperref} % for refs and URLs
+\usepackage{graphicx} % for images (and title page)
+\usepackage{geometry} % for margins in title page
+\usepackage{tabu} % for tabulars (and title page)
+\usepackage{placeins} % for float barriers
+\usepackage{titlesec} % for section break hooks
+%\usepackage[justification=centering]{caption} % for forced captions centering
+\usepackage{subcaption} % for subfloats
+%\usepackage{rotating} % for rotated labels in tables
+%\usepackage{tikz} % for TiKZ
+%\usepackage{dot2texi} % for inline dot graphs
+\usepackage{listings} % for listings 
+\usepackage{upquote} % for good-looking quotes in source code (used for custom languages)
+\usepackage{multirow} % for multirow cells in tabulars
+%\usepackage{afterpage} % for nice landspace floats
+%\usepackage{pdflscape} % for landspace orientation
+\usepackage{xcolor} % colors!
+\usepackage{enumitem} % for unboxed description labels (long ones)
+\usepackage{lastpage}
+\usepackage{subcaption}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,patterns}
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\lstloadlanguages{C,haskell,bash,java}
+
+\usepackage{textcomp}
+
+\lstset{
+%    inputencoding=utf8,
+%    backgroundcolor=\color{white},
+    tabsize=4,
+    rulecolor=,
+    upquote=true,
+%    aboveskip={1.5\baselineskip},
+    columns=fixed,
+    showstringspaces=false,
+    extendedchars=true,
+    breaklines=true,
+    prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+    frame=single,
+    showtabs=false,
+    showspaces=false,
+    showstringspaces=false,
+    basicstyle=\scriptsize\ttfamily,
+    identifierstyle=\ttfamily,
+    keywordstyle=\ttfamily\color[rgb]{0,0,1},
+    commentstyle=\ttfamily\color[rgb]{0.133,0.545,0.133},
+    stringstyle=\ttfamily\color[rgb]{0.627,0.126,0.941},
+}
+
+\renewcommand\lstlistingname{Листинг}
+
+\defaultfontfeatures{Mapping=tex-text} % for converting "--" and "---"
+
+\MakeOuterQuote{"} % enable auto-quotation
+
+\newcommand{\varI}[1]{{\operatorname{\mathit{#1}}}}
+
+% new page and barrier after section, also phantom section after clearpage for
+% hyperref to get right page.
+% clearpage also outputs all active floats:
+\newcommand{\sectionbreak}{\clearpage\phantomsection}
+\newcommand{\subsectionbreak}{\FloatBarrier}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+\renewcommand{\thesection}{\arabic{section}} % no chapters
+\numberwithin{equation}{section}
+%\usetikzlibrary{shapes,arrows,trees}
+
+\usepackage{expl3}
+\ExplSyntaxOn
+\cs_new_eq:NN \Repeat \prg_replicate:nn
+\ExplSyntaxOff
+
+
+\DeclareMathOperator{\rank}{rank}
+\makeatletter
+
+\lstdefinelanguage{llvm}{
+  morecomment = [l]{;},
+  morestring=[b]", 
+  sensitive = true,
+  classoffset=0,
+  morekeywords={
+    define, declare, global, constant,
+    internal, external, private,
+    linkonce, linkonce_odr, weak, weak_odr, appending,
+    common, extern_weak,
+    thread_local, dllimport, dllexport,
+    hidden, protected, default,
+    except, deplibs,
+    volatile, fastcc, coldcc, cc, ccc,
+    x86_stdcallcc, x86_fastcallcc,
+    ptx_kernel, ptx_device,
+    signext, zeroext, inreg, sret, nounwind, noreturn,
+    nocapture, byval, nest, readnone, readonly, noalias, uwtable,
+    inlinehint, noinline, alwaysinline, optsize, ssp, sspreq,
+    noredzone, noimplicitfloat, naked, alignstack,
+    module, asm, align, tail, to,
+    addrspace, section, alias, sideeffect, c, gc,
+    target, datalayout, triple,
+    blockaddress
+  },
+  classoffset=1, keywordstyle=\color{purple},
+  morekeywords={
+    fadd, sub, fsub, mul, fmul,
+    sdiv, udiv, fdiv, srem, urem, frem,
+    and, or, xor,
+    icmp, fcmp,
+    eq, ne, ugt, uge, ult, ule, sgt, sge, slt, sle,
+    oeq, ogt, oge, olt, ole, one, ord, ueq, ugt, uge,
+    ult, ule, une, uno,
+    nuw, nsw, exact, inbounds,
+    phi, call, select, shl, lshr, ashr, va_arg,
+    trunc, zext, sext,
+    fptrunc, fpext, fptoui, fptosi, uitofp, sitofp,
+    ptrtoint, inttoptr, bitcast,
+    ret, br, indirectbr, switch, invoke, unwind, unreachable,
+    malloc, alloca, free, load, store, getelementptr,
+    extractelement, insertelement, shufflevector,
+    extractvalue, insertvalue,
+  },
+  alsoletter={\%},
+  keywordsprefix={\%},
+}
+
+\newenvironment{sqcases}{%
+  \matrix@check\sqcases\env@sqcases
+}{%
+  \endarray\right.%
+}
+\def\env@sqcases{%
+  \let\@ifnextchar\new@ifnextchar
+  \left\lbrack
+  \def\arraystretch{1.2}%
+  \array{@{}l@{\quad}l@{}}%
+}
+\makeatother
+\setcounter{tocdepth}{3}
+
+%for abstract
+%page count \pageref{LastPage}
+\usepackage{lastpage}  
+%\totalfigures \totaltables
+\usepackage[figure,table,lstlisting,xspace]{totalcount}
+
+\date{\today}
+
+\usepackage{etoolbox}
+\newcounter{totreferences}
+\pretocmd{\bibitem}{\addtocounter{totreferences}{1}}{}{}
+\makeatletter
+     \AtEndDocument{%
+       \immediate\write\@mainaux{%
+         \string\gdef\string\totref{\number\value{totreferences}}%
+       }%
+     }
+\let\thetitle\@title
+\let\theauthor\@author
+\let\thedate\@date
+\makeatother
+
+\bibliography{reference_list} 
+\begin{document} 
+
+\newgeometry{margin=1cm}
+\begin{titlepage}
+  \begin{center}
+    \emph{Федеральное государственное бюджетное образовательное учреждение высшего
+      профессионального образования}
+    \begin{tabu} to \linewidth {lX[1,c,m]}
+      \hline \\
+      \includegraphics[width=0.15\linewidth]{img/crest} &
+      \large\emph{``Московский государственный технический университет имени Н.Э.
+        Баумана'' (МГТУ им. Н.Э. Баумана)} \\
+    \end{tabu}
+  \end{center}
+  \begin{tabu}{ll}
+    \large\textsc{Факультет:} & Информатика и системы управления \\
+    \large\textsc{Кафедра:} & Программное обеспечение ЭВМ и информационные технологии \\
+  \end{tabu}
+  \vspace{1.0cm}
+  \begin{center}
+    \huge{Курсовая работа} \\
+    \vspace{0.5cm}
+    \small{по теме} \\
+    \vspace{0.5cm}
+    \Large{``Бекенд компилятора языка C--''}
+  \end{center}
+  \vfill
+  \begin{tabu} to \linewidth {Xr}
+    Студент: Гребенюк Александр, ИУ7-29& \\
+  \end{tabu}
+  \vspace{0.2cm}
+  \begin{center}
+    Москва \the\year
+  \end{center}
+\end{titlepage}
+\restoregeometry
+
+%skip for title page
+\setcounter{page}{2}
+
+\section*{Реферат}
+Отчёт \pageref{LastPage}с., \totaltables табл., \totallstlistings листингов, 4 источника, 0 приложений.
+
+\noindent \textbf{Компиляторы, LLVM, JIT, Haskell.} 
+
+Предмет работы составляет разработка бекенда компилятора упрощённой версии языка C-- с целью изучения его механизмов работы.
+
+Цель работы - создание программного обеспечения, осуществляющего трансляцию абстрактное синтсаксического дерева в код LLVM IR с последующей JIT-компиляцией. 
+
+Было разработано ПО, осуществляющее трансляцию абстрактное синтсаксического дерева в промежуточное представление кода виртуальной машины LLVM -- LLVM IR и
+JIT-компиляцию полученного кода. Был изучен механизм линковки сторонних библиотек для обеспечения работы инструкций ввода-вывода языка C--.
+
+В результате было разработан бекенд компилятора C-- и приведены примеры трансляции АСТ в LLVM IR.
+
+\tableofcontents
+
+\section{Введение}
+В настоящей работе в рамках курса ``конструирование компиляторов'' реализуется бекенд компилятора упрощённой версии языка C--.
+В работе приводится описание трансляции токенов абстрактного синтсаксического дерева в LLVM IR и примеры обнаруживаемых ошибок компиляции. Также приводится описание реализации JIT-компилятора.
+
+\section{Абстрактное синтаксическое дерево}
+Выходными данными фронтенда компилятора является синтаксическое дерево следующего вида:
+\begin{lstlisting}[language=Haskell]
+data Type = 
+    Number 
+    | Reference Int 
+    | Void
+
+data Vardecl = Vardecl String Type
+
+data Declaration = 
+    VD Vardecl
+    | Funcdecl Type String [Vardecl] Statement
+    | Extdecl Type String [Vardecl] 
+    
+data Statement =
+    Complex [Vardecl] [Statement]
+    | Ite Expression Statement (Maybe Statement)
+    | While Expression Statement
+    | Expsta Expression
+    | Return (Maybe Expression)
+    
+data Expression =
+    ConstInt Int                      -- 7
+    | ConstArr [Int]                  -- [7,8,9]
+    | Takeval Expression              
+    | Takeadr String                  
+    | Call String [Expression]  
+    | Assign [Expression] Expression  -- adr1 = adr2 = adr3 = 7
+    | BracketOp Expression Expression
+\end{lstlisting}
+Абстракцией самого верхнего уровня является Declaration. Код C-- модуля де-факто представляет собой лес корневых элементов Declaration, отражающих инструкции объявления глобальных переменных и функций языка C--. 
+
+\section{Трансляция}
+\subsection{Переменные}
+Переменные в АСТ представляются абстракцией Vardecl и имеют имя и тип. Глобальные переменные объявляются вне тел функций и представляются абстракцией VD.
+
+
+Следующий пример LLVM IR объявляет глобальную переменную ``gvar'' типа ``i32'' с начальным значением 0 и глобальный i32 массив ``garr'' размера 10, инициализированный нулями.
+\begin{lstlisting}[language=llvm]
+@gvar = common global i32 0
+@garr = common global <10 x i32> zeroinitializer
+\end{lstlisting}
+LLVM не предоставляет возможности объявить неинициализированную глобальную переменную, поэтому, несмотря на отсутствие поддержки инициализации переменных при объявлении в АСТ, компилятор производит инициализацию переменных нулевыми значениями, в зависимости от типа.
+
+Ключевое слово ``common'' означает тип линковки переменной. Согласно документации, именно этот тип линковки используется для неинициализированных глобальных переменных в C-подобных языках. Далее так же будет использован тип ``external'' при объявлении внешних(библиотечных) функций, реализующих ввод-вывод.
+
+
+Данная реализация компилятора поддерживает локальные переменные, однако производит выделение памяти на стеке а не в куче.
+
+
+Пример объявления и инициализации локальной переменой:
+
+\begin{lstlisting}[language=C]
+//C-- some function scope:
+int j;
+j = 'Z';
+\end{lstlisting}
+
+\begin{lstlisting}[language=llvm]
+; LLVM IR
+%2 = alloca i32
+store i32 90, i32* %2
+\end{lstlisting}
+
+\subsection{Функции}
+Функции в АСТ представляются абстракцией Funcdecl и имеют: тип возвращаемого значения, имя, список параметров и тело.
+
+
+Для удобства трансляции в АСТ была добавлена абстракция Extdecl, представляющая собой Funcdecl без тела, отражающая объявление внешних функций. Т.к. упрощенная версия языка C-- не поддерживает инструкций объявления внешних функций, Extdecl невозможно получить путем синтаксического разбора, т.е. добавление двух необходимых Extdecl(для реализации инструкций ``read'' и ``write'' языка C--) производится непосредтсвенно в коде компилятора, после этапа генерации АСТ.
+
+
+Пример объявления внешней функции ``void putChar(int)'', отвечающей инструкции ``write'', и функции языка C--:
+\begin{lstlisting}[language=C]
+//C-- instruction ``write'', uses external putChar.
+void print(int sym)
+{
+    write sym;
+    return;
+}
+\end{lstlisting}
+
+\begin{lstlisting}[language=llvm]
+; LLVM IR
+declare void @putChar(i32)
+
+define void @print(i32 %sym) {
+entry:
+  %0 = alloca i32
+  store i32 %sym, i32* %0
+  %1 = load i32* %0
+  call void @putChar(i32 %1)
+  ret void
+}
+\end{lstlisting}
+
+\subsection{Выражения}
+АСТ поддерживает следующие типы выражений:
+\begin{itemize}
+  \item Целочисленная константа
+  \item Целочисленный массив
+  \item Вычисление значения выражения %ЗАЧЕМ?!
+  \item Вычисление значения переменной
+  \item Вызов функции
+  \item Множественное присваивание (``a = b = 6'')
+  \item Индексация в массиве
+\end{itemize}
+Ввиду особенности реализации фронтенда, по умолчанию АСТ поддерживает арифметические операции языка C-- посредством вызова ``Call <operator> [Expression]''. Т.к. LLVM поддерживает множество арифметических операций над различными типами данных, и язык C-- не является семантически объектно-ориентированным, т.е. не поддерживает перегрузку операторов, было принято решение транслировать Call арифметических операторов в существующие LLVM-инструкции вместо генерации кода поддержки операторов.
+
+
+LLVM поддерживает объявление, в числе прочих, целочисленных констант и многомерных константных массивов. Вычисление значения переменной проихводится при помощи инструкции ``load'', вызов функции -- при помощи ``call''.
+
+
+Пример сложного кода на C-- и его трансляции в LLVM IR:
+\begin{lstlisting}[language=C]
+//C--: m, k -- local, gvar -- global, print -- declared function
+m = k = gvar = gvar + 1;
+print(m);
+\end{lstlisting}
+
+\begin{lstlisting}[language=llvm]
+; LLVM IR
+%7 = load i32* @gvar
+%8 = add i32 %7, 1
+store i32 %8, i32* @gvar  ; gvar = gvar + 1
+%9 = load i32* @gvar
+store i32 %9, i32* %3     ; k = gvar
+%10 = load i32* %3
+store i32 %10, i32* %4    ; m = k
+%11 = load i32* %4
+call void @print(i32 %11) ; print(k)
+\end{lstlisting}
+
+\subsection{Ветвление}
+АСТ поддерживает следующие инструкции ветвления:
+\begin{itemize}
+  \item while
+  \item if-then
+  \item if-then-else
+\end{itemize}
+Ветвление в LLVM производится при помощи создания нескольких блоков кода и объяления условных и безусловных переходов между ними.
+Каждый блок, кроме первого и последнего должен иметь хотя бы один вход и один выход.
+
+\subsubsection*{while}
+\begin{lstlisting}[language=llvm]
+; LLVM IR
+while.cond:                                       ; preds = %if.exit, %entry
+  ; ...
+  br i1 %6, label %while.loop, label %while.exit
+
+while.loop:                                       ; preds = %while.cond
+  ; ...
+  br label %while.cond
+
+while.exit:                                       ; preds = %while.cond
+  ; ...
+\end{lstlisting}
+
+\subsubsection*{if-then, if-then-else}
+\begin{lstlisting}[language=llvm]
+; LLVM IR
+br i1 %13, label %if.then, label %if.else
+if.then:                                          ; preds = %while.loop
+  ; ...
+  br label %if.exit
+
+if.else:                                          ; preds = %while.loop
+  ; ...
+  br label %if.exit
+
+if.exit:                                          ; preds = %if.else, %if.then
+  ; ...
+\end{lstlisting}
+Инструкция ветвления с отсутствующим блоком ``else'' эмулирует поведение полной инструкции, т.е. создает блок ``if.else'' из единственной 
+терминальной инструкции безусловного перехода в конец цикла. 
+
+\subsection{Возврат управления}
+В данной версии языка C-- инструкция возврата управления может присутствовать только в конце тела функции. В LLVM IR для возврата управления используется
+инструкция ``ret''.
+
+Примеры:
+\begin{lstlisting}[language=llvm]
+; function1
+; ...
+ret i32 %14
+; function2
+; ...
+ret void
+\end{lstlisting}
+
+\section{Реализация}
+Данный проект был реализован на языке Haskell с использованием библиотек llvm-general-pure и llvm-general, предоставляющих привязки для языка Haskell к C++ LLVM - библиотекам, поставляемым разработчиками LLVM и находящимися в открытом доступе.
+
+
+Для реализации инструкций ``read'' и ``write'' была написана динамически линкуемая библиотека cbits.so.
+\begin{lstlisting}[language=C]
+#include <stdio.h>
+#include <stdint.h>
+
+void putChar(int32_t X) {
+  putchar((char)X);
+  fflush(stdout);
+}
+
+int32_t getChar() 
+{
+  return getchar();
+}
+\end{lstlisting}
+Линковка и сборка Haskell-кода производится при помощи утилиты ``ghc'' (Glasgow Haskell Compiler, Version 7.10.1)
+
+
+JIT-компиляция производится при помощи вызова LLVM ExecutionEngine, предоставляемого библиотекой llvm-general.
+\end{document}

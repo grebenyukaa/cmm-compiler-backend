@@ -1,0 +1,170 @@
+
+;; Function putChar (putChar, funcdef_no=0, decl_uid=2284, cgraph_uid=0, symbol_order=0)
+
+
+
+putChar
+
+Dataflow summary:
+;;  invalidated by call 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 19 [fpcr] 21 [xmm0] 22 [xmm1] 23 [xmm2] 24 [xmm3] 25 [xmm4] 26 [xmm5] 27 [xmm6] 28 [xmm7] 29 [mm0] 30 [mm1] 31 [mm2] 32 [mm3] 33 [mm4] 34 [mm5] 35 [mm6] 36 [mm7] 37 [r8] 38 [r9] 39 [r10] 40 [r11] 45 [xmm8] 46 [xmm9] 47 [xmm10] 48 [xmm11] 49 [xmm12] 50 [xmm13] 51 [xmm14] 52 [xmm15] 53 [] 54 [] 55 [] 56 [] 57 [] 58 [] 59 [] 60 [] 61 [] 62 [] 63 [] 64 [] 65 [] 66 [] 67 [] 68 [] 69 [] 70 [] 71 [] 72 [] 73 [] 74 [] 75 [] 76 [] 77 [] 78 [] 79 [] 80 []
+;;  hardware regs used 	 7 [sp]
+;;  regular block artificial uses 	 6 [bp] 7 [sp]
+;;  eh block artificial uses 	 6 [bp] 7 [sp] 16 [argp] 20 [frame]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 6 [bp] 7 [sp] 20 [frame] 21 [xmm0] 22 [xmm1] 23 [xmm2] 24 [xmm3] 25 [xmm4] 26 [xmm5] 27 [xmm6] 28 [xmm7] 37 [r8] 38 [r9]
+;;  exit block uses 	 0 [ax] 6 [bp] 7 [sp] 20 [frame]
+;;  regs ever live 	 0[ax] 5[di] 6[bp] 7[sp]
+;;  ref usage 	r0={8d,6u} r1={3d} r2={3d} r4={3d} r5={5d,3u} r6={3d,7u} r7={4d,9u} r8={2d} r9={2d} r10={2d} r11={2d} r12={2d} r13={2d} r14={2d} r15={2d} r17={3d} r18={2d} r19={2d} r20={1d,1u} r21={3d} r22={3d} r23={3d} r24={3d} r25={3d} r26={3d} r27={3d} r28={3d} r29={2d} r30={2d} r31={2d} r32={2d} r33={2d} r34={2d} r35={2d} r36={2d} r37={3d} r38={3d} r39={2d} r40={2d} r45={2d} r46={2d} r47={2d} r48={2d} r49={2d} r50={2d} r51={2d} r52={2d} r53={2d} r54={2d} r55={2d} r56={2d} r57={2d} r58={2d} r59={2d} r60={2d} r61={2d} r62={2d} r63={2d} r64={2d} r65={2d} r66={2d} r67={2d} r68={2d} r69={2d} r70={2d} r71={2d} r72={2d} r73={2d} r74={2d} r75={2d} r76={2d} r77={2d} r78={2d} r79={2d} r80={2d} 
+;;    total ref usage 201{175d,26u,0e} in 16{14 regular + 2 call} insns.
+(note 1 0 4 NOTE_INSN_DELETED)
+(note 4 1 26 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn/f 26 4 27 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg/f:DI 6 bp)) cbits.c:9 65 {*pushdi2_rex64}
+     (nil))
+(insn/f 27 26 28 2 (set (reg/f:DI 6 bp)
+        (reg/f:DI 7 sp)) cbits.c:9 89 {*movdi_internal}
+     (nil))
+(insn/f 28 27 29 2 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -16 [0xfffffffffffffff0])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) cbits.c:9 971 {pro_epilogue_adjust_stack_di_add}
+     (nil))
+(note 29 28 2 2 NOTE_INSN_PROLOGUE_END)
+(insn 2 29 3 2 (set (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -4 [0xfffffffffffffffc])) [0 X+0 S4 A32])
+        (reg:SI 5 di [ X ])) cbits.c:9 90 {*movsi_internal}
+     (nil))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 8 2 (set (reg:SI 0 ax [92])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -4 [0xfffffffffffffffc])) [0 X+0 S4 A32])) cbits.c:10 90 {*movsi_internal}
+     (nil))
+(insn 8 6 9 2 (set (reg:SI 0 ax [orig:88 D.2301 ] [88])
+        (sign_extend:SI (reg:QI 0 ax [orig:87 D.2300 ] [87]))) cbits.c:10 148 {extendqisi2}
+     (nil))
+(insn 9 8 10 2 (set (reg:SI 5 di)
+        (reg:SI 0 ax [orig:88 D.2301 ] [88])) cbits.c:10 90 {*movsi_internal}
+     (nil))
+(call_insn 10 9 11 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("putchar") [flags 0x41]  <function_decl 0x7fc8401590d8 putchar>) [0 __builtin_putchar S1 A8])
+            (const_int 0 [0]))) cbits.c:10 670 {*call_value}
+     (nil)
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(insn 11 10 12 2 (set (reg/f:DI 0 ax [93])
+        (mem/u/c:DI (const:DI (unspec:DI [
+                        (symbol_ref:DI ("stdout") [flags 0x40]  <var_decl 0x7fc8402055a0 stdout>)
+                    ] UNSPEC_GOTPCREL)) [0  S8 A8])) cbits.c:11 89 {*movdi_internal}
+     (nil))
+(insn 12 11 13 2 (set (reg/f:DI 0 ax [orig:89 D.2302 ] [89])
+        (mem/f/c:DI (reg/f:DI 0 ax [93]) [0 stdout+0 S8 A64])) cbits.c:11 89 {*movdi_internal}
+     (nil))
+(insn 13 12 14 2 (set (reg:DI 5 di)
+        (reg/f:DI 0 ax [orig:89 D.2302 ] [89])) cbits.c:11 89 {*movdi_internal}
+     (nil))
+(call_insn 14 13 15 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fflush") [flags 0x41]  <function_decl 0x7fc84022e870 fflush>) [0 fflush S1 A8])
+            (const_int 0 [0]))) cbits.c:11 670 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 15 14 23 2 (set (reg:SI 0 ax [orig:90 D.2301 ] [90])
+        (const_int 0 [0])) cbits.c:12 90 {*movsi_internal}
+     (nil))
+(insn 23 15 30 2 (use (reg/i:SI 0 ax)) cbits.c:13 -1
+     (nil))
+(note 30 23 31 2 NOTE_INSN_EPILOGUE_BEG)
+(insn/f 31 30 32 2 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 6 bp)
+                    (const_int 8 [0x8])))
+            (set (reg/f:DI 6 bp)
+                (mem:DI (reg/f:DI 6 bp) [0  S8 A8]))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) cbits.c:13 695 {leave_rex64}
+     (expr_list:REG_CFA_DEF_CFA (plus:DI (reg/f:DI 7 sp)
+            (const_int 8 [0x8]))
+        (nil)))
+(jump_insn 32 31 33 2 (simple_return) cbits.c:13 681 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 33 32 25)
+(note 25 33 0 NOTE_INSN_DELETED)
+
+;; Function getChar (getChar, funcdef_no=1, decl_uid=2287, cgraph_uid=1, symbol_order=1)
+
+
+
+getChar
+
+Dataflow summary:
+;;  invalidated by call 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 19 [fpcr] 21 [xmm0] 22 [xmm1] 23 [xmm2] 24 [xmm3] 25 [xmm4] 26 [xmm5] 27 [xmm6] 28 [xmm7] 29 [mm0] 30 [mm1] 31 [mm2] 32 [mm3] 33 [mm4] 34 [mm5] 35 [mm6] 36 [mm7] 37 [r8] 38 [r9] 39 [r10] 40 [r11] 45 [xmm8] 46 [xmm9] 47 [xmm10] 48 [xmm11] 49 [xmm12] 50 [xmm13] 51 [xmm14] 52 [xmm15] 53 [] 54 [] 55 [] 56 [] 57 [] 58 [] 59 [] 60 [] 61 [] 62 [] 63 [] 64 [] 65 [] 66 [] 67 [] 68 [] 69 [] 70 [] 71 [] 72 [] 73 [] 74 [] 75 [] 76 [] 77 [] 78 [] 79 [] 80 []
+;;  hardware regs used 	 7 [sp]
+;;  regular block artificial uses 	 6 [bp] 7 [sp]
+;;  eh block artificial uses 	 6 [bp] 7 [sp] 16 [argp] 20 [frame]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 6 [bp] 7 [sp] 20 [frame] 21 [xmm0] 22 [xmm1] 23 [xmm2] 24 [xmm3] 25 [xmm4] 26 [xmm5] 27 [xmm6] 28 [xmm7] 37 [r8] 38 [r9]
+;;  exit block uses 	 0 [ax] 6 [bp] 7 [sp] 20 [frame]
+;;  regs ever live 	 0[ax] 1[dx] 5[di] 6[bp] 7[sp]
+;;  ref usage 	r0={4d,4u} r1={3d,1u} r2={2d} r4={2d} r5={2d,1u} r6={3d,7u} r7={4d,8u} r8={1d} r9={1d} r10={1d} r11={1d} r12={1d} r13={1d} r14={1d} r15={1d} r17={2d} r18={1d} r19={1d} r20={1d,1u} r21={2d} r22={2d} r23={2d} r24={2d} r25={2d} r26={2d} r27={2d} r28={2d} r29={1d} r30={1d} r31={1d} r32={1d} r33={1d} r34={1d} r35={1d} r36={1d} r37={2d} r38={2d} r39={1d} r40={1d} r45={1d} r46={1d} r47={1d} r48={1d} r49={1d} r50={1d} r51={1d} r52={1d} r53={1d} r54={1d} r55={1d} r56={1d} r57={1d} r58={1d} r59={1d} r60={1d} r61={1d} r62={1d} r63={1d} r64={1d} r65={1d} r66={1d} r67={1d} r68={1d} r69={1d} r70={1d} r71={1d} r72={1d} r73={1d} r74={1d} r75={1d} r76={1d} r77={1d} r78={1d} r79={1d} r80={1d} 
+;;    total ref usage 121{99d,22u,0e} in 12{11 regular + 1 call} insns.
+(note 1 0 4 NOTE_INSN_DELETED)
+(note 4 1 21 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn/f 21 4 22 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg/f:DI 6 bp)) cbits.c:16 65 {*pushdi2_rex64}
+     (nil))
+(insn/f 22 21 23 2 (set (reg/f:DI 6 bp)
+        (reg/f:DI 7 sp)) cbits.c:16 89 {*movdi_internal}
+     (nil))
+(insn/f 23 22 24 2 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -16 [0xfffffffffffffff0])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) cbits.c:16 971 {pro_epilogue_adjust_stack_di_add}
+     (nil))
+(note 24 23 2 2 NOTE_INSN_PROLOGUE_END)
+(insn 2 24 3 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 X+0 S8 A64])
+        (reg:DI 5 di [ X ])) cbits.c:16 89 {*movdi_internal}
+     (nil))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(call_insn 6 3 7 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("getchar") [flags 0x41]  <function_decl 0x7fc840235510 getchar>) [0 getchar S1 A8])
+            (const_int 0 [0]))) cbits.c:17 670 {*call_value}
+     (nil)
+    (nil))
+(insn 7 6 8 2 (set (reg:SI 1 dx [orig:87 D.2303 ] [87])
+        (reg:SI 0 ax)) cbits.c:17 90 {*movsi_internal}
+     (nil))
+(insn 8 7 9 2 (set (reg/f:DI 0 ax [90])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 X+0 S8 A64])) cbits.c:17 89 {*movdi_internal}
+     (nil))
+(insn 9 8 10 2 (set (mem:SI (reg/f:DI 0 ax [90]) [0 *X_4(D)+0 S4 A32])
+        (reg:SI 1 dx [orig:87 D.2303 ] [87])) cbits.c:17 90 {*movsi_internal}
+     (nil))
+(insn 10 9 18 2 (set (reg:SI 0 ax [orig:88 D.2303 ] [88])
+        (const_int 0 [0])) cbits.c:18 90 {*movsi_internal}
+     (nil))
+(insn 18 10 25 2 (use (reg/i:SI 0 ax)) cbits.c:19 -1
+     (nil))
+(note 25 18 26 2 NOTE_INSN_EPILOGUE_BEG)
+(insn/f 26 25 27 2 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 6 bp)
+                    (const_int 8 [0x8])))
+            (set (reg/f:DI 6 bp)
+                (mem:DI (reg/f:DI 6 bp) [0  S8 A8]))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) cbits.c:19 695 {leave_rex64}
+     (expr_list:REG_CFA_DEF_CFA (plus:DI (reg/f:DI 7 sp)
+            (const_int 8 [0x8]))
+        (nil)))
+(jump_insn 27 26 28 2 (simple_return) cbits.c:19 681 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 28 27 20)
+(note 20 28 0 NOTE_INSN_DELETED)
